@@ -9,14 +9,18 @@ class AddJoke extends React.Component {
         super(props);
         this.state = {inputTxt: ''};
         // This binding is necessary to make `this` work in the callback
-        //this.handleClick = this.handleClick);
+        this.handleClick = this.handleClick.bind(this);
+        this.storeEmail = this.storeEmail.bind(this);
     }
 
 
-    
+    storeEmail = function(e){
+        console.log(e.target.value);
+        this.setState({inputTxt:e.target.value});
+    }
     handleClick = function(e) {
         //var a = React.findDOMNode(this.refs.email_id).value;
-        console.log('ssssssssss');
+        console.log('ssssssssss'+this.state.inputTxt);
         //this.getData();
         // this.setState({
         //     inputTxt: "sdfsdf"
@@ -33,7 +37,7 @@ class AddJoke extends React.Component {
 
                     <div className="form-group has-error">
                         <label htmlFor="email_id" className="control-label">Email</label>
-                        <input type="email" className="form-control" id="email_id" name="email_name" aria-describedby="email_help" placeholder="Email"  required autoFocus />
+                        <input type="email" onChange={this.storeEmail} className="form-control" id="email_id" name="email_id" aria-describedby="email_help" placeholder="Email"  required autoFocus />
                     </div>
 
                     <div className="form-group">
